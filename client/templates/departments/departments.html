@@ -1,0 +1,33 @@
+<template name="departments">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Departments List</h3>
+	  </div>
+	  <div class="panel-body">
+	    <table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Dept. Head</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each departments}}
+				<tr>
+					<td>{{_id}}</td>
+					<td>{{name}}</td>
+					<td>{{head}}</td>
+					<td><button type="button" id="remove_department" class="btn btn-danger">Delete</button></td>
+				</tr>
+				{{else}}
+				<tr>
+					<td rowspan="3">There are no department created</td>
+				</tr>
+				{{/each}}
+			</tbody>
+	    </table>
+	  </div>
+	</div>
+</template>

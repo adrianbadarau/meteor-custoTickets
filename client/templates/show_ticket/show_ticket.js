@@ -5,7 +5,7 @@ Template.show_ticket.events({
 		var reply = event.target.reply_message_t_area.value;
 		var userType = 'customer'
 		if(Meteor.user().profile.userType == "staff"){
-			userType = staff;
+			userType = "staff";
 		}
 
 		Tickets.update({
