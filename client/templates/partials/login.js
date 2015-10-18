@@ -1,3 +1,9 @@
+Template.login.helpers({
+	userEmail: function () {
+		return Meteor.user().emails[0].address;
+	}
+});
+
 Template.login.events({
 	'click #register_link': function (event) {
 		event.preventDefault();
@@ -9,13 +15,33 @@ Template.login.events({
 		$("#sign-in").show();
 		$("#register").hide();
 	},
+	"click #sign_out":function(event){
+		event.preventDefault();
+
+		Meteor.logout(function(err){
+			if(err){
+				FlashMessages.sendError(err.reason);
+			}else{
+				FlashMessages.sendSuccess("you are now looged out");
+				Router.go("/");
+			}
+		})
+	},
 	"submit .form-signin": function(event){
 		event.preventDefault();
 
 		var email = trimInput(event.target.email.value);
 		var pass = trimInput(event.target.password.value);
 
-		
+		Meteor.loginWithPassword(email, pass, function(err){
+			if(err){
+				event.target.email.value = email;
+				FlashMessages.sendError(err.reason);
+			}else{
+				FlashMessages.sendSuccess("you are now logged in");
+				Router.go("/");
+			}
+		})
 	},
 	"submit .form-register": function(event){
 		event.preventDefault();

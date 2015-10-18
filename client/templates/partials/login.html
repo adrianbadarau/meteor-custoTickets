@@ -1,6 +1,15 @@
 <template name="login">
 {{#if currentUser}}
-
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Welcome Back</h3>
+	  </div>
+	  <div class="panel-body">
+	    {{userEmail}}
+	    <hr>
+	    <button type="button" id="sign_out" class="btn btn-primary">Sign Out</button>
+	  </div>
+	</div>
 {{else}}
 	<div class="panel panel-default">
 	  <div class="panel-heading">
