@@ -1,3 +1,87 @@
 <template name="my_tickets">
-	<h1>My tickets</h1>
+{{#if currentUser}}
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Opened Tickets</h3>
+	  </div>
+	  <div class="panel-body">
+	    <table class="table table-hover">
+	      <thead>
+	      	<tr>
+	      		<td>#</td>
+	      		<th>Subject</th>
+	      		<th>Date Opened</th>
+	      		<th>Status</th>
+	      	</tr>
+	      </thead>
+	      <tbody>
+	      	{{#each tickets}}
+	      		<tr>
+	      			<td>{{_id}}</td>
+	      			<td><a href="{{pathFor 'show_ticket'}}">{{subject}}</a></td>
+	      			<td>{{createdAt}}</td>
+	      			<td>{{status}}</td>
+	      			<td><button id="close_ticket" type="button" class="btn btn-danger">Close</button></td>
+	      		</tr>
+	      	{{else}}
+	      		<tr rowspan="3">
+	      			You have no poened tickets
+	      		</tr>
+	      	{{/each}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="open_ticket" tabindex="-1" role="dialog" aria-labelledby="open_ticket_modal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="open_ticket_modal_label">Open Ticket</h4>
+	      </div>
+        <form id="open_ticket_form">
+	      <div class="modal-body">
+	        	<div class="form-group">
+	        		<label for="name_field">Name</label>
+	        		<input type="text" id="name_field" name="name_field" placeholder="Your name" class="form-control" required> 
+	        		<label for="email_field">Email Address</label>
+	        		<input type="email" id="email_field" name="email_field" placeholder="Email Address" class="form-control" required> 
+	        	</div>
+	        	<div class="form-group">
+	        		<label for="subject_field">Subject</label>
+	        		<input type="text" id="subject_field" name="subject_field" placeholder="Subject" class="form-control" required> 
+	        	</div>
+	        	<div class="form-group">
+	        		<label for="department_select">Department</label>
+	        		<select type="department_select" id="department_select" name="department_select" class="form-control" required>
+	        			<option value="web_hosting">Web Hosting</option>
+	        		</select> 
+	        	</div>
+	        	<div class="form-group">
+	        		<label for="priority_select">Priority</label>
+	        		<select type="priority_select" id="priority_select" name="priority_select" class="form-control" required>
+	        			<option value="low">Low</option>
+	        			<option value="medium" selected>Medium</option>
+	        			<option value="high">High</option>
+	        		</select> 
+	        	</div>
+	        	<div class="form-group">
+	        		<label for="message_t_area">Message</label>
+	        		<textarea name="message_t_area" id="message_t_area" cols="30" rows="10" class="form-control"></textarea>
+	        	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Save changes</button>
+	      </div>
+        </form>
+	    </div>
+	  </div>
+	</div>
+{{else}}
+	<h1>Welcome</h1>	
+	<p>Please create an account or log in to be able to use the application</p>
+{{/if}}
 </template>
