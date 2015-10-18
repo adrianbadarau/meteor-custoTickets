@@ -1,0 +1,30 @@
+<template name="show_ticket">
+	<ul class="list-group">
+		<li class="list-group-item"><strong>Ticket ID: </strong>{{_id}}</li>
+		<li class="list-group-item"><strong>Customer Name: </strong>{{name}}</li>
+		<li class="list-group-item"><strong>Department: </strong>{{department}}</li>
+		<li class="list-group-item"><strong>Priority: </strong>{{capFirst priority}}</li>
+		<li class="list-group-item"><strong>Ticket Date: </strong>{{formatDate createdAt}}</li>
+		<li class="list-group-item"><strong>Subject: </strong>{{subject}}</li>
+		<li class="list-group-item"><strong>Status: </strong>{{capFirst status}}</li>
+		<li class="list-group-item"><strong>Message (Customer): </strong>{{message}}</li>
+	</ul>
+
+	<form role="form" id="send_reply">
+		<legend>Send Message</legend>
+	
+		<div class="form-group">
+			<label for="">Reply Message</label>
+			<textarea class="form-control" id="reply_message_t_area" name="reply_message_t_area" placeholder="Send a message"></textarea> 
+		</div>	
+		<button type="submit" class="btn btn-primary">Send</button>
+	</form>
+	
+	<hr>
+	{{#each replies}}
+		<div class="reply-{{userType}}">
+			<strong>{{capFirst userType}}</strong> [{{replyDate}}] <br>
+			<p>{{reply}}</p>
+		</div>
+	{{/each}}
+</template>

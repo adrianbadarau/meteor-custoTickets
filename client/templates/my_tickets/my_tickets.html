@@ -19,8 +19,8 @@
 	      		<tr>
 	      			<td>{{_id}}</td>
 	      			<td><a href="{{pathFor 'show_ticket'}}">{{subject}}</a></td>
-	      			<td>{{createdAt}}</td>
-	      			<td>{{status}}</td>
+	      			<td>{{formatDate createdAt}}</td>
+	      			<td>{{capFirst status}}</td>
 	      			<td><button id="close_ticket" type="button" class="btn btn-danger">Close</button></td>
 	      		</tr>
 	      	{{else}}

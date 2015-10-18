@@ -9,7 +9,7 @@ Template.my_tickets.events({
 			department: event.target.department_select.value,
 			priority: event.target.priority_select.value,
 			message: event.target.message_t_area.value,
-			staus: "new",
+			status: "new",
 			customer: Meteor.userId(),
 			createdAt: new Date(),
 		}
@@ -18,6 +18,13 @@ Template.my_tickets.events({
 
 		$('#open_ticket').modal('hide');
 
-		FlashMessages.sendSuccess("Your ticket "+ticketId+" has been succesfuly created")
-	}
+		FlashMessages.sendSuccess("Your ticket "+ticketId+" has been succesfuly created");
+	},
+	'click #close_ticket': function (event) {
+		event.preventDefault();
+		if(confirm("Are you sure?")){
+			Tickets.remove(this._id);
+			flashMessages.sendSuccess("Ticket closed !");
+		}
+	},
 });
