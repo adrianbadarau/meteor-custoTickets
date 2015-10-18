@@ -11,3 +11,4 @@ At startup the app will create an admin users (admin@admin with a pass of admin)
 
 The staff member is able to manage departments, see, answer and delete all tickets.
 
+TODO: Create Android/IOS  cordova app
